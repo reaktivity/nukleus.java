@@ -8,7 +8,7 @@
   <artifactId>nukleus</artifactId>
   <version>develop-SNAPSHOT</version>
   <name>Nukleus API</name>
-  <url>https://github.com/reaktivity/build-template.java</url>
+  <url>https://github.com/reaktivity/nukleus.java</url>
   <inceptionYear>2016</inceptionYear>
 
   <licenses>
