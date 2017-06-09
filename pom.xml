@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>0.2</version>
+  <version>0.3</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
@@ -45,7 +45,7 @@
 
     <agrona.version>0.5.5</agrona.version>
     <junit.version>4.12</junit.version>
-    <k3po.version>3.0.0-alpha-54</k3po.version>
+    <k3po.version>3.0.0-alpha-75</k3po.version>
     <jmh.version>1.12</jmh.version>
   </properties>
 
