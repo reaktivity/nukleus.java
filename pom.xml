@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>develop-SNAPSHOT</version>
+  <version>0.5</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
