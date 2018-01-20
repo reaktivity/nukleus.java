@@ -47,7 +47,7 @@
 
     <agrona.version>0.5.5</agrona.version>
     <junit.version>4.12</junit.version>
-    <k3po.version>develop-SNAPSHOT</k3po.version>
+    <k3po.version>3.0.0-alpha-88</k3po.version>
     <jmh.version>1.12</jmh.version>
   </properties>
 
