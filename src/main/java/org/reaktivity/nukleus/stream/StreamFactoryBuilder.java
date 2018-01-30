@@ -16,14 +16,11 @@
 package org.reaktivity.nukleus.stream;
 
 import java.util.function.Function;
-import java.util.function.IntUnaryOperator;
 import java.util.function.LongConsumer;
-import java.util.function.LongFunction;
 import java.util.function.LongSupplier;
-import java.util.function.Supplier;
 
 import org.agrona.MutableDirectBuffer;
-import org.reaktivity.nukleus.buffer.BufferPool;
+import org.reaktivity.nukleus.buffer.MemoryManager;
 import org.reaktivity.nukleus.route.RouteManager;
 
 public interface StreamFactoryBuilder
@@ -34,39 +31,14 @@ public interface StreamFactoryBuilder
     StreamFactoryBuilder setStreamIdSupplier(
         LongSupplier supplyStreamId);
 
-    default StreamFactoryBuilder setGroupIdSupplier(
-        LongSupplier supplyGroupId)
-    {
-        return this;
-    }
-
-    /*
-     * Use the given object to claim group budget for a groupId.
-     * For e.g.:
-     *
-     * int claimed = claimGroupBudget.apply(groupId).applyAsInt(claim);
-     */
-    StreamFactoryBuilder setGroupBudgetClaimer(
-        LongFunction<IntUnaryOperator> claimGroupBudget);
-
-    /*
-     * Use the given object to release group budget for a groupId.
-     *
-     * For e.g.:
-     *
-     * int remaining = releaseGroupBudget.apply(groupId).applyAsInt(claimed);
-     */
-    StreamFactoryBuilder setGroupBudgetReleaser(
-        LongFunction<IntUnaryOperator> releaseGroupBudget);
-
     StreamFactoryBuilder setCorrelationIdSupplier(
         LongSupplier supplyCorrelationId);
 
     StreamFactoryBuilder setWriteBuffer(
         MutableDirectBuffer writeBuffer);
 
-    StreamFactoryBuilder setBufferPoolSupplier(
-        Supplier<BufferPool> supplyBufferPool);
+    StreamFactoryBuilder setMemoryManager(
+        MemoryManager memoryManager);
 
     default StreamFactoryBuilder setCounterSupplier(
         Function<String, LongSupplier> supplyCounter)
@@ -81,5 +53,4 @@ public interface StreamFactoryBuilder
     }
 
     StreamFactory build();
-
 }
