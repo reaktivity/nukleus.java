@@ -37,8 +37,11 @@ public interface StreamFactoryBuilder
     StreamFactoryBuilder setWriteBuffer(
         MutableDirectBuffer writeBuffer);
 
-    StreamFactoryBuilder setMemoryManager(
-        MemoryManager memoryManager);
+    default StreamFactoryBuilder setMemoryManager(
+        MemoryManager memoryManager)
+    {
+        return this;
+    }
 
     default StreamFactoryBuilder setCounterSupplier(
         Function<String, LongSupplier> supplyCounter)
