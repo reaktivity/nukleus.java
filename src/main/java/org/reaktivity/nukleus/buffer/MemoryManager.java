@@ -19,5 +19,7 @@ public interface MemoryManager
 {
     long acquire(int capacity);
 
+    long resolve(long address);
+
     void release(long address, int capacity);
 }
