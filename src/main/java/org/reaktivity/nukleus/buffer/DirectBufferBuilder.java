@@ -26,5 +26,10 @@ public interface DirectBufferBuilder
     DirectBufferBuilder wrap(
         DirectBuffer buffer);
 
+    DirectBufferBuilder wrap(
+        DirectBuffer buffer,
+        int offset,
+        int length);
+
     DirectBuffer build();
 }
