@@ -18,8 +18,10 @@ package org.reaktivity.nukleus.stream;
 import java.util.function.Function;
 import java.util.function.LongConsumer;
 import java.util.function.LongSupplier;
+import java.util.function.Supplier;
 
 import org.agrona.MutableDirectBuffer;
+import org.reaktivity.nukleus.buffer.DirectBufferBuilder;
 import org.reaktivity.nukleus.buffer.MemoryManager;
 import org.reaktivity.nukleus.route.RouteManager;
 
@@ -39,6 +41,12 @@ public interface StreamFactoryBuilder
 
     default StreamFactoryBuilder setMemoryManager(
         MemoryManager memoryManager)
+    {
+        return this;
+    }
+
+    default StreamFactoryBuilder setDirectBufferBuilderFactory(
+        Supplier<DirectBufferBuilder> supplyDirectBufferBuilder)
     {
         return this;
     }
