@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>0.32</version>
+  <version>0.33</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
@@ -36,25 +36,25 @@
   </scm>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>9</maven.compiler.source>
+    <maven.compiler.target>9</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <checkstyle.config.location>src/conf/checkstyle/configuration.xml</checkstyle.config.location>
     <checkstyle.suppressions.location>src/conf/checkstyle/suppressions.xml</checkstyle.suppressions.location>
     <jacoco.coverage.ratio>0.24</jacoco.coverage.ratio>
-    <jacoco.missed.count>10</jacoco.missed.count>
+    <jacoco.missed.count>11</jacoco.missed.count>
 
-    <agrona.version>0.5.5</agrona.version>
+    <agrona.version>0.9.35</agrona.version>
     <junit.version>4.12</junit.version>
-    <k3po.version>3.0.0-alpha-88</k3po.version>
+    <k3po.version>3.0.0-alpha-99</k3po.version>
     <jmh.version>1.12</jmh.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.agrona</groupId>
-      <artifactId>Agrona</artifactId>
+      <artifactId>agrona</artifactId>
       <version>${agrona.version}</version>
     </dependency>
     <dependency>
@@ -185,12 +185,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.1</version>
+        <version>3.8.0</version>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.9</version>
+        <version>0.8.2</version>
         <configuration>
           <rules>
             <rule>
@@ -221,7 +221,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.17</version>
+        <version>2.22.1</version>
         <configuration>
           <argLine>@{argLine}</argLine>
         </configuration>
@@ -242,7 +242,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.19.1</version>
+        <version>2.22.1</version>
         <configuration>
           <argLine>@{argLine}</argLine>
         </configuration>
@@ -259,6 +259,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>org.reaktivity.nukleus</Automatic-Module-Name>
+          </manifestEntries>
+        </archive>
+        </configuration>
         <executions>
           <execution>
             <goals>
