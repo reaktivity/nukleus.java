@@ -43,18 +43,18 @@
     <checkstyle.config.location>src/conf/checkstyle/configuration.xml</checkstyle.config.location>
     <checkstyle.suppressions.location>src/conf/checkstyle/suppressions.xml</checkstyle.suppressions.location>
     <jacoco.coverage.ratio>0.24</jacoco.coverage.ratio>
-    <jacoco.missed.count>10</jacoco.missed.count>
+    <jacoco.missed.count>11</jacoco.missed.count>
 
-    <agrona.version>0.5.5</agrona.version>
+    <agrona.version>0.9.35</agrona.version>
     <junit.version>4.12</junit.version>
-    <k3po.version>3.0.0-alpha-88</k3po.version>
+    <k3po.version>3.0.0-alpha-99</k3po.version>
     <jmh.version>1.12</jmh.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.agrona</groupId>
-      <artifactId>Agrona</artifactId>
+      <artifactId>agrona</artifactId>
       <version>${agrona.version}</version>
     </dependency>
     <dependency>
@@ -259,6 +259,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>org.reaktivity.nukleus</Automatic-Module-Name>
+          </manifestEntries>
+        </archive>
+        </configuration>
         <executions>
           <execution>
             <goals>
