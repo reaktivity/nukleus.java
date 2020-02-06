@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>0.44</version>
+  <version>0.45</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
@@ -43,7 +43,7 @@
     <checkstyle.config.location>src/conf/checkstyle/configuration.xml</checkstyle.config.location>
     <checkstyle.suppressions.location>src/conf/checkstyle/suppressions.xml</checkstyle.suppressions.location>
     <jacoco.coverage.ratio>0.58</jacoco.coverage.ratio>
-    <jacoco.missed.count>11</jacoco.missed.count>
+    <jacoco.missed.count>12</jacoco.missed.count>
 
     <agrona.version>1.1.0</agrona.version>
     <junit.version>4.12</junit.version>
@@ -138,7 +138,7 @@
         <configuration>
           <header>COPYRIGHT</header>
           <properties>
-            <copyrightYears>2016-2019</copyrightYears>
+            <copyrightYears>2016-2020</copyrightYears>
           </properties>
           <includes>
             <include>src/**</include>
@@ -178,7 +178,7 @@
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>8.23</version>
+            <version>8.29</version>
           </dependency>
         </dependencies>
       </plugin>
