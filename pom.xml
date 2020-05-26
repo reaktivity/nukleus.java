@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>0.46</version>
+  <version>0.47</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
@@ -224,6 +224,9 @@
         <version>2.22.1</version>
         <configuration>
           <argLine>@{argLine}</argLine>
+          <excludes>
+            <exclude/>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
