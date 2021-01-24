@@ -9,9 +9,6 @@ jobs:
   build:
     name: Sync
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ 9 ]
 
     steps:
     - name: Import GPG key
