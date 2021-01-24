@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>0.59</version>
+  <version>0.60</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
@@ -494,12 +494,6 @@
           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
       </distributionManagement>
-
-      <properties>
-        <skipTests>true</skipTests>
-        <skipITs>true</skipITs>
-        <jacoco.skip>true</jacoco.skip>
-      </properties>
 
       <build>
         <plugins>

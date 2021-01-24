@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  publish:
     name: Publish
     runs-on: ubuntu-latest
 
@@ -17,8 +17,18 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 9
-    - name: Download from GitHub Packages
-      run: ./mvnw -B -nsu -Pgithub.packages package dependency:copy
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    - name: Build with Maven
+      run: ./mvnw -B -nsu -Pgithub.packages verify
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: Publish to GitHub Packages
+      run: ./mvnw -Pgithub.packages,release -DskipTests -DskipITs -Djacoco.skip deploy
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Setup Maven Central
@@ -31,7 +41,7 @@ jobs:
         gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
         gpg-passphrase: OSSRH_SIGNER_PASSPHRASE
     - name: Publish to Maven Central
-      run: ./mvnw -B -nsu -Possrh deploy
+      run: ./mvnw -Possrh -DskipTests -DskipITs -Djacoco.skip deploy
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
@@ -40,6 +50,7 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: custom
+        job_name: Publish
         fields: job,repo,author,took
         custom_payload: |
           {
