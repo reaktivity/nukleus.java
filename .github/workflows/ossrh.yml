@@ -15,7 +15,10 @@ jobs:
 
     steps:
     - name: Import GPG key
-      run: "echo $OSSRH_SIGNER_KEY | gpg --import"
+      run: |
+        echo $OSSRH_SIGNER_KEY > /tmp/private-key.txt
+        gpg --import /tmp/private-key.txt
+        rm /tmp/private-key.txt
       env:
         OSSRH_SIGNER_KEY: ${{ secrets.OSSRH_SIGNER_KEY }}
     - name: Checkout GitHub sources
