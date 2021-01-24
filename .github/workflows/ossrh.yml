@@ -13,6 +13,10 @@ jobs:
         java: [ 9 ]
 
     steps:
+    - name: Import GPG key
+      run: "echo $OSSRH_SIGNER_KEY | gpg --import"
+      env:
+        OSSRH_SIGNER_KEY: ${{ secrets.OSSRH_SIGNER_KEY }}
     - name: Checkout GitHub sources
       uses: actions/checkout@v2
     - name: Setup JDK ${{ matrix.java }}
