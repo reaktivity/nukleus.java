@@ -29,6 +29,7 @@ jobs:
         server-username: OSSRH_USERNAME
         server-password: OSSRH_PASSWORD
         gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
+        gpg-passphrase: ${{ secrets.OSSRH_SIGNER_PASSPHRASE }}
     - name: Publish to Maven Central
       run: ./mvnw -B -nsu -Possrh deploy
     - name: Notify via Slack
