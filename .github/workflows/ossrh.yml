@@ -7,20 +7,21 @@ on:
 
 jobs:
   build:
-    name: Sync
+    name: Publish
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ 9 ]
 
     steps:
-    - name: Import GPG key
-      uses: crazy-max/ghaction-import-gpg@v3
-      with:
-        gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
     - name: Checkout GitHub sources
       uses: actions/checkout@v2
-    - name: Setup JDK ${{ matrix.java }}
+    - name: Setup GitHub Packages
+      uses: actions/setup-java@v1
+      with:
+        java-version: 9
+    - name: Download from GitHub Packages
+      run: ./mvnw -B -nsu -Pgithub.packages package dependency:copy
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: Setup Maven Central
       uses: actions/setup-java@v1
       with:
         java-version: 9
@@ -28,19 +29,12 @@ jobs:
         server-username: OSSRH_USERNAME
         server-password: OSSRH_PASSWORD
         gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
-    - name: Deploy to Maven Central
-      run: ./mvnw -B -nsu -Possrh,github.packages deploy
+    - name: Publish to Maven Central
+      run: ./mvnw -B -nsu -Possrh deploy
     - name: Notify via Slack
       uses: 8398a7/action-slack@v3
       with:
         status: custom
-        job_name: Sync
         fields: job,repo,author,took
         custom_payload: |
           {
@@ -52,6 +46,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        OSSRH_USERNAME: ${{ secrts.OSSRH_USERNAME }}
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
       if: ${{ env.SLACK_WEBHOOK_URL != null }}
