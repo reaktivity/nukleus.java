@@ -1,4 +1,4 @@
-name: ossrh
+name: publish
 
 on:
   release:
