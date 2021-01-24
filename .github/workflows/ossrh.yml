@@ -1,11 +1,8 @@
 name: ossrh
 
 on:
-  workflow_dispatch:
-    inputs:
-      release:
-        description: 'Release'
-        required: true
+  registry_package:
+    types: [published]
 
 jobs:
   build:
@@ -18,8 +15,6 @@ jobs:
     steps:
     - name: Checkout GitHub sources
       uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.inputs.release }}
     - name: Setup JDK ${{ matrix.java }}
       uses: actions/setup-java@v1
       with:
@@ -36,7 +31,7 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: custom
-        job_name: Build
+        job_name: Sync
         fields: job,repo,author,took
         custom_payload: |
           {
