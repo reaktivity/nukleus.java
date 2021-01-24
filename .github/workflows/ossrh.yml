@@ -3,6 +3,7 @@ name: ossrh
 on:
   registry_package:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build:
