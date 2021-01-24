@@ -9,7 +9,9 @@ jobs:
   build:
     name: Sync
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        java: [ 9 ]
     steps:
     - name: Import GPG key
       uses: crazy-max/ghaction-import-gpg@v3
@@ -20,7 +22,7 @@ jobs:
     - name: Setup JDK ${{ matrix.java }}
       uses: actions/setup-java@v1
       with:
-        java-version: 9
+        java-version: ${{ matrix.java }}
         server-id: ossrh
         server-username: OSSRH_USERNAME
         server-password: OSSRH_PASSWORD
@@ -49,6 +51,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        MATRIX_CONTEXT: ${{ toJson(matrix) }}
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
       if: ${{ env.SLACK_WEBHOOK_URL != null }}
