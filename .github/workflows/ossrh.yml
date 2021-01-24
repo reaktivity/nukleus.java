@@ -15,14 +15,9 @@ jobs:
 
     steps:
     - name: Import GPG key
-      run: |
-        echo $OSSRH_SIGNER_KEY > /tmp/private-key.txt
-        ls -l /tmp/private-key.txt
-        gpg --version
-        gpg -v --import /tmp/private-key.txt
-        rm /tmp/private-key.txt
-      env:
-        OSSRH_SIGNER_KEY: ${{ secrets.OSSRH_SIGNER_KEY }}
+      uses: crazy-max/ghaction-import-gpg@v3
+      with:
+        gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
     - name: Checkout GitHub sources
       uses: actions/checkout@v2
     - name: Setup JDK ${{ matrix.java }}
