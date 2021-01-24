@@ -49,6 +49,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        OSSRH_USERNAME: ${{ secrts.OSSRH_USERNAME }}
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
       if: ${{ env.SLACK_WEBHOOK_URL != null }}
