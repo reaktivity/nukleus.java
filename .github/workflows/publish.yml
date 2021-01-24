@@ -40,6 +40,7 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: custom
+        job_name: Publish
         fields: job,repo,author,took
         custom_payload: |
           {
