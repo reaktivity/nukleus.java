@@ -495,12 +495,6 @@
         </repository>
       </distributionManagement>
 
-      <properties>
-        <skipTests>true</skipTests>
-        <skipITs>true</skipITs>
-        <jacoco.skip>true</jacoco.skip>
-      </properties>
-
       <build>
         <plugins>
           <plugin>
