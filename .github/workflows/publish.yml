@@ -1,4 +1,4 @@
-name: ossrh
+name: publish
 
 on:
   release:
@@ -32,6 +32,10 @@ jobs:
         gpg-passphrase: OSSRH_SIGNER_PASSPHRASE
     - name: Publish to Maven Central
       run: ./mvnw -B -nsu -Possrh deploy
+      env:
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        OSSRH_SIGNER_PASSPHRASE: ${{ secrets.OSSRH_SIGNER_PASSPHRASE }}
     - name: Notify via Slack
       uses: 8398a7/action-slack@v3
       with:
@@ -47,7 +51,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        OSSRH_SIGNER_PASSPHRASE: ${{ secrets.OSSRH_SIGNER_PASSPHRASE }}
       if: ${{ env.SLACK_WEBHOOK_URL != null }}
