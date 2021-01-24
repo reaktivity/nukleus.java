@@ -7,16 +7,14 @@ jobs:
   build:
     name: Sync
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ 9 ]
+
     steps:
     - name: Checkout GitHub sources
       uses: actions/checkout@v2
     - name: Setup JDK ${{ matrix.java }}
       uses: actions/setup-java@v1
       with:
-        java-version: ${{ matrix.java }}
+        java-version: 9
         server-id: ossrh
         server-username: OSSRH_USERNAME
         server-password: OSSRH_PASSWORD
@@ -33,7 +31,6 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: custom
-        job_name: Sync
         fields: job,repo,author,took
         custom_payload: |
           {
@@ -45,7 +42,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        MATRIX_CONTEXT: ${{ toJson(matrix) }}
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
       if: ${{ env.SLACK_WEBHOOK_URL != null }}
