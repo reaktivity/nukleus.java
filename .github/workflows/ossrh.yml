@@ -11,10 +11,6 @@ jobs:
       matrix:
         java: [ 9 ]
     steps:
-    - name: Import GPG key
-      uses: crazy-max/ghaction-import-gpg@v3
-      with:
-        gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
     - name: Checkout GitHub sources
       uses: actions/checkout@v2
     - name: Setup JDK ${{ matrix.java }}
