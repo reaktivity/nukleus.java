@@ -38,7 +38,7 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Resolve from GitHub Packages
-      run: ./mvnw -Pgithub.packages dependency:copy
+      run: ./mvnw -B -Pgithub.packages dependency:copy
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Setup Maven Central
@@ -51,7 +51,7 @@ jobs:
         gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
         gpg-passphrase: OSSRH_SIGNER_PASSPHRASE
     - name: Deploy to Maven Central
-      run: ./mvnw -Possrh -DskipTests -DskipITs -Djacoco.skip deploy
+      run: ./mvnw -B -Possrh -DskipTests -DskipITs -Djacoco.skip deploy
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
