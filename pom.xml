@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus</artifactId>
-  <version>0.67</version>
+  <version>0.68</version>
   <name>Nukleus API</name>
   <description>Nukleus API</description>
   <url>https://github.com/reaktivity/nukleus.java</url>
@@ -34,6 +34,13 @@
     <developerConnection>scm:git:https://github.com/reaktivity/nukleus.java</developerConnection>
     <url>https://github.com/reaktivity/nukleus.java</url>
   </scm>
+
+  <repositories>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/reaktivity/packages/</url>
+    </repository>
+  </repositories>
 
   <properties>
     <maven.compiler.source>9</maven.compiler.source>
@@ -148,7 +155,7 @@
         <configuration>
           <header>COPYRIGHT</header>
           <properties>
-            <copyrightYears>2016-2020</copyrightYears>
+            <copyrightYears>2016-2021</copyrightYears>
           </properties>
           <includes>
             <include>src/**</include>
@@ -390,7 +397,7 @@
                       <message>No Snapshots Allowed!</message>
                     </requireReleaseDeps>
                     <requireJavaVersion>
-                      <version>[9,10)</version>
+                      <version>[11,12)</version>
                     </requireJavaVersion>
                   </rules>
                 </configuration>
@@ -412,7 +419,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.0.0-M1</version>
+            <version>3.2.0</version>
             <executions>
               <execution>
                 <goals>
@@ -427,13 +434,6 @@
 
     <profile>
       <id>github.packages</id>
-
-      <repositories>
-        <repository>
-          <id>github</id>
-          <url>https://maven.pkg.github.com/reaktivity/packages/</url>
-        </repository>
-      </repositories>
 
       <build>
         <plugins>
