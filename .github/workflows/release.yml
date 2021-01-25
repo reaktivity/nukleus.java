@@ -51,7 +51,7 @@ jobs:
         gpg-private-key: ${{ secrets.OSSRH_SIGNER_KEY }}
         gpg-passphrase: OSSRH_SIGNER_PASSPHRASE
     - name: Deploy to Maven Central
-      run: ./mvnw -B -Possrh -DskipTests -DskipITs -Djacoco.skip deploy
+      run: ./mvnw -Possrh com.github.genthaler:beanshell-maven-plugin:run build-helper:attach-artifact gpg:sign nexus-staging:deploy
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}

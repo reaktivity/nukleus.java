@@ -498,6 +498,18 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>com.github.genthaler</groupId>
+            <artifactId>beanshell-maven-plugin</artifactId>
+            <version>1.4</version>
+            <configuration>
+              <script>
+                <![CDATA[
+                project.getArtifact().setFile(new java.io.File(project.getBuild().getDirectory(), project.getBuild().getFinalName() + ".jar"));
+                ]]>
+              </script>
+            </configuration>
+          </plugin>
+          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>build-helper-maven-plugin</artifactId>
             <version>3.2.0</version>
@@ -517,27 +529,11 @@
                 </artifact>
               </artifacts>
             </configuration>
-            <executions>
-              <execution>
-                <phase>verify</phase>
-                <goals>
-                  <goal>attach-artifact</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>1.6</version>
-            <executions>
-              <execution>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
             <configuration>
               <gpgArguments>
                 <arg>--pinentry-mode</arg>
