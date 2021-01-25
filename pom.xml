@@ -35,6 +35,13 @@
     <url>https://github.com/reaktivity/nukleus.java</url>
   </scm>
 
+  <repositories>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/reaktivity/packages/</url>
+    </repository>
+  </repositories>
+
   <properties>
     <maven.compiler.source>9</maven.compiler.source>
     <maven.compiler.target>9</maven.compiler.target>
@@ -427,13 +434,6 @@
 
     <profile>
       <id>github.packages</id>
-
-      <repositories>
-        <repository>
-          <id>github</id>
-          <url>https://maven.pkg.github.com/reaktivity/packages/</url>
-        </repository>
-      </repositories>
 
       <build>
         <plugins>
